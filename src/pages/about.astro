@@ -1,0 +1,56 @@
+---
+import Base from '../layouts/Base.astro';
+---
+
+<Base
+  title="About — Duy Nguyen"
+  description="A bit about Duy Nguyen — who I am and what I work on."
+>
+  <div class="about">
+    <h1>About</h1>
+
+    <p>
+      Hi, I'm Duy — a software developer. I've been writing code for a while,
+      mostly in the web space.
+    </p>
+
+    <h2>What I work on</h2>
+    <p>
+      Describe your work, tech interests, side projects, etc.
+    </p>
+
+    <h2>This site</h2>
+    <p>
+      Built with <a href="https://astro.build">Astro</a>, deployed on
+      <a href="https://vercel.com">Vercel</a>. Posts are plain Markdown
+      committed to the repo — no database.
+    </p>
+
+    <h2>Find me online</h2>
+    <ul>
+      <li><a href="https://github.com/">GitHub</a></li>
+    </ul>
+  </div>
+</Base>
+
+<style>
+  .about {
+    max-width: 680px;
+  }
+
+  .about h1 {
+    margin-top: 0;
+  }
+
+  .about h2 {
+    margin-top: 2em;
+  }
+
+  .about ul {
+    padding-left: 1.25em;
+  }
+
+  .about li {
+    margin-bottom: 4px;
+  }
+</style>

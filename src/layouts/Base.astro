@@ -1,0 +1,101 @@
+---
+import '../styles/global.css';
+
+interface Props {
+  title: string;
+  description?: string;
+}
+
+const { title, description = 'A personal site and blog by Duy Nguyen.' } = Astro.props;
+const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonicalURL} />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="container">
+        <a href="/" class="site-logo">Duy Nguyen</a>
+        <nav aria-label="Main navigation">
+          <a href="/">Home</a>
+          <a href="/blog">Blog</a>
+          <a href="/about">About</a>
+        </nav>
+      </div>
+    </header>
+
+    <main class="container">
+      <slot />
+    </main>
+
+    <footer class="site-footer">
+      <div class="container">
+        <p>&copy; {new Date().getFullYear()} Duy Nguyen</p>
+      </div>
+    </footer>
+  </body>
+</html>
+
+<style>
+  .site-header {
+    border-bottom: 1px solid var(--border);
+    padding-block: 16px;
+  }
+
+  .site-header .container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .site-logo {
+    font-weight: 600;
+    color: var(--text-h);
+    text-decoration: none;
+    font-size: 18px;
+  }
+
+  .site-logo:hover {
+    text-decoration: none;
+  }
+
+  nav {
+    display: flex;
+    gap: 24px;
+  }
+
+  nav a {
+    color: var(--text);
+    font-size: 15px;
+    transition: color 0.2s;
+  }
+
+  nav a:hover {
+    color: var(--accent);
+    text-decoration: none;
+  }
+
+  main {
+    flex: 1;
+    padding-block: 48px;
+  }
+
+  .site-footer {
+    border-top: 1px solid var(--border);
+    padding-block: 24px;
+    font-size: 14px;
+    color: var(--text);
+  }
+
+  .site-footer p {
+    margin: 0;
+  }
+</style>

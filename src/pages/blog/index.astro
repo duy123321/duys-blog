@@ -1,0 +1,98 @@
+---
+import { getCollection } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+
+const allPosts = await getCollection('blog', ({ data }) => !data.draft);
+const posts = allPosts.sort(
+  (a, b) => b.data.date.getTime() - a.data.date.getTime()
+);
+---
+
+<Base
+  title="Blog — Duy Nguyen"
+  description="Writing about software, side projects, and whatever else is on my mind."
+>
+  <div class="blog-index">
+    <h1>Blog</h1>
+
+    {posts.length === 0 && <p>No posts yet. Check back soon.</p>}
+
+    <ul class="post-list">
+      {posts.map((post) => (
+        <li class="post-item">
+          <a href={`/blog/${post.id.replace(/\.mdx?$/, '')}`} class="post-link">
+            <span class="post-title">{post.data.title}</span>
+            <time
+              datetime={post.data.date.toISOString().split('T')[0]}
+              class="post-date"
+            >
+              {post.data.date.toLocaleDateString('en-US', {
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric',
+              })}
+            </time>
+            {post.data.description && (
+              <p class="post-description">{post.data.description}</p>
+            )}
+          </a>
+        </li>
+      ))}
+    </ul>
+  </div>
+</Base>
+
+<style>
+  .blog-index h1 {
+    margin-top: 0;
+    margin-bottom: 40px;
+  }
+
+  .post-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .post-item {
+    border-bottom: 1px solid var(--border);
+  }
+
+  .post-item:first-child {
+    border-top: 1px solid var(--border);
+  }
+
+  .post-link {
+    display: block;
+    padding-block: 20px;
+    color: inherit;
+    text-decoration: none;
+    transition: padding-left 0.2s;
+  }
+
+  .post-link:hover {
+    padding-left: 8px;
+    text-decoration: none;
+  }
+
+  .post-title {
+    display: block;
+    font-size: 18px;
+    font-weight: 500;
+    color: var(--text-h);
+    margin-bottom: 4px;
+  }
+
+  .post-date {
+    display: block;
+    font-size: 13px;
+    color: var(--text);
+    margin-bottom: 8px;
+  }
+
+  .post-description {
+    font-size: 15px;
+    color: var(--text);
+    margin: 0;
+  }
+</style>

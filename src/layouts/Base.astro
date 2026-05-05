@@ -23,7 +23,6 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
   <body>
     <header class="site-header">
       <div class="container">
-        <a href="/" class="site-logo">Duy Nguyen</a>
         <nav aria-label="Main navigation">
           <a href="/">Home</a>
           <a href="/blog">Blog</a>
@@ -46,25 +45,12 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 
 <style>
   .site-header {
-    border-bottom: 1px solid var(--border);
-    padding-block: 16px;
+    padding-block: 24px;
   }
 
   .site-header .container {
     display: flex;
-    align-items: center;
-    justify-content: space-between;
-  }
-
-  .site-logo {
-    font-weight: 600;
-    color: var(--text-h);
-    text-decoration: none;
-    font-size: 18px;
-  }
-
-  .site-logo:hover {
-    text-decoration: none;
+    justify-content: center;
   }
 
   nav {

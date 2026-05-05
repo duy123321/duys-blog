@@ -5,3 +5,4 @@ bun.lockb
 .DS_Store
 *.local
 *.log
+.claude/worktrees/

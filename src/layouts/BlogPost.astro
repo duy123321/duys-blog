@@ -5,9 +5,10 @@ interface Props {
   title: string;
   date: Date;
   description: string;
+  tags?: string[];
 }
 
-const { title, date, description } = Astro.props;
+const { title, date, description, tags = [] } = Astro.props;
 
 const formattedDate = date.toLocaleDateString('en-US', {
   year: 'numeric',
@@ -23,6 +24,13 @@ const formattedDate = date.toLocaleDateString('en-US', {
       <time datetime={date.toISOString().split('T')[0]} class="post-date">
         {formattedDate}
       </time>
+      {tags.length > 0 && (
+        <div class="post-tags">
+          {tags.map((tag) => (
+            <a href={`/tags/${tag}`} class="tag">{tag}</a>
+          ))}
+        </div>
+      )}
     </header>
     <div class="post-body">
       <slot />
@@ -47,6 +55,29 @@ const formattedDate = date.toLocaleDateString('en-US', {
     color: var(--text);
     font-size: 14px;
     letter-spacing: 0.02em;
+  }
+
+  .post-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-top: 12px;
+  }
+
+  .tag {
+    font-size: 12px;
+    color: var(--text);
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    padding: 2px 8px;
+    text-decoration: none;
+    letter-spacing: 0.03em;
+  }
+
+  .tag:hover {
+    color: var(--accent);
+    border-color: var(--accent);
+    text-decoration: none;
   }
 
   .post-body {

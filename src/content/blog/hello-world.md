@@ -3,6 +3,7 @@ title: "Hello, World"
 date: 2026-04-27
 description: "The first post on this blog — a quick note on what this site is and where it's going."
 draft: false
+tags: ["meta"]
 ---
 
 Welcome to the blog. This is where I write about software, side projects, and whatever else I find interesting.

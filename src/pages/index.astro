@@ -1,13 +1,8 @@
 ---
 import Base from '../layouts/Base.astro';
+import WindScene from '../components/WindScene';
 ---
 
 <Base title="Duy Nguyen — Software Developer">
-  <section class="interactive-placeholder"></section>
+  <WindScene client:load />
 </Base>
-
-<style>
-  .interactive-placeholder {
-    min-height: 60vh;
-  }
-</style>

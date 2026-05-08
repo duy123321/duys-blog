@@ -8,6 +8,12 @@ tags: ["meta"]
 
 Welcome to the blog. This is where I write about software, side projects, and whatever else I find interesting.
 
+<div style="max-width: 500px; margin: 0 auto;">
+
+![](./yostuba_cat_wallpaper.jpg)
+
+</div>
+
 This site is built with [Astro](https://astro.build) and deployed to [Vercel](https://vercel.com). Posts are plain Markdown files committed to the repository — no database, no CMS to maintain.
 
 More posts coming soon.

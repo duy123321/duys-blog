@@ -81,7 +81,6 @@ const formattedDate = date.toLocaleDateString('en-US', {
   }
 
   .post-body {
-    max-width: 680px;
     line-height: 1.75;
   }
 
@@ -102,6 +101,14 @@ const formattedDate = date.toLocaleDateString('en-US', {
     background: none;
     padding: 0;
     font-size: 14px;
+  }
+
+  .post-body :global(img) {
+    display: block;
+    max-width: 100%;
+    height: auto;
+    margin-inline: auto;
+    border-radius: 8px;
   }
 
   .post-body :global(blockquote) {

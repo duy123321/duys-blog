@@ -3,7 +3,7 @@ title: "The Beggining"
 date: 2026-04-27
 description: "The first post on this blog — a quick note on what this site is and where it's going."
 draft: false
-tags: ["meta"]
+tags: ["blog"]
 ---
 
 Welcome to Duy's blog. 3 year of living the normal 9 to 5 life has driven me to a state of spiritual and creative boredom. I've found myself, for the first time in many years, searching for a means of expression. It seems writing might be that path. 

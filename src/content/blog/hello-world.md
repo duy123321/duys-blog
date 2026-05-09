@@ -1,5 +1,5 @@
 ---
-title: "The Beggining"
+title: "The Beginning"
 date: 2026-04-27
 description: "The first post on this blog — a quick note on what this site is and where it's going."
 draft: false

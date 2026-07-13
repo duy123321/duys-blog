@@ -1,0 +1,147 @@
+---
+// aspect ratios (width / height) drive how much horizontal space each photo claims per row
+const row1 = [
+  { src: '/collage/0-1.jpg', ratio: 1061 / 1600 },
+  { src: '/collage/IMG_8681.jpeg', ratio: 1600 / 1061 },
+];
+const row2 = [
+  { src: '/collage/IMG_8698.jpeg', ratio: 1600 / 1061 },
+  { src: '/collage/IMG_8678.jpeg', ratio: 1061 / 1600 },
+];
+const row3 = [
+  { src: '/collage/IMG_8699.jpeg', ratio: 1600 / 1061 },
+  { src: '/collage/0.jpg', ratio: 927 / 1916 },
+  { src: '/collage/IMG_8810.jpeg', ratio: 1061 / 1600 },
+];
+---
+
+<div class="photo-grid">
+  <div class="grid-row">
+    <div class="cell text-cell">
+      <p class="typed-text">Nice to meet you, I'm Duy</p>
+    </div>
+    {row1.map(({ src, ratio }) => (
+      <div class="cell photo-cell" style={`--ratio: ${ratio}`}>
+        <img src={src} alt="" loading="eager" />
+      </div>
+    ))}
+  </div>
+
+  <div class="grid-row">
+    {row2.map(({ src, ratio }) => (
+      <div class="cell photo-cell" style={`--ratio: ${ratio}`}>
+        <img src={src} alt="" loading="lazy" />
+      </div>
+    ))}
+    <div class="cell text-cell">
+      <p class="typed-text">Just a place for me to share my thoughts and myself</p>
+    </div>
+  </div>
+
+  <div class="grid-row">
+    {row3.map(({ src, ratio }) => (
+      <div class="cell photo-cell" style={`--ratio: ${ratio}`}>
+        <img src={src} alt="" loading="lazy" />
+      </div>
+    ))}
+  </div>
+</div>
+
+<style>
+  .photo-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .grid-row {
+    display: flex;
+    gap: 20px;
+    height: 280px;
+  }
+
+  .cell {
+    flex-grow: var(--ratio, 1.3);
+    flex-shrink: 1;
+    flex-basis: 0;
+    min-width: 0;
+    border-radius: 12px;
+    overflow: hidden;
+  }
+
+  .photo-cell img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .text-cell {
+    flex-grow: 1.3;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-inline: 12px;
+    color: var(--text);
+    text-align: center;
+    border: none !important;
+    outline: none !important;
+  }
+
+  .typed-text {
+    margin: 0;
+    font-size: 18px;
+    line-height: 1.3;
+    letter-spacing: -0.3px;
+    font-weight: 500;
+    visibility: hidden;
+  }
+
+  .typed-text::after {
+    content: '|';
+    margin-left: 2px;
+    color: var(--text);
+    animation: blink 0.9s step-end infinite;
+  }
+
+  @keyframes blink {
+    50% { opacity: 0; }
+  }
+
+  @media (max-width: 1024px) {
+    .grid-row {
+      height: 170px;
+      gap: 12px;
+    }
+
+    .photo-grid {
+      gap: 12px;
+    }
+
+    .typed-text {
+      font-size: 18px;
+    }
+  }
+</style>
+
+<script>
+  const speed = 35;
+  const pause = 400;
+  let cumulativeDelay = 0;
+
+  document.querySelectorAll<HTMLElement>('.typed-text').forEach((el) => {
+    const text = el.textContent ?? '';
+    setTimeout(() => {
+      el.textContent = '';
+      el.style.visibility = 'visible';
+      let i = 0;
+      const step = () => {
+        el.textContent = text.slice(0, i);
+        i++;
+        if (i <= text.length) setTimeout(step, speed);
+      };
+      step();
+    }, cumulativeDelay);
+    cumulativeDelay += text.length * speed + pause;
+  });
+</script>

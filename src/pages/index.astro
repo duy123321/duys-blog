@@ -1,8 +1,14 @@
 ---
 import Base from '../layouts/Base.astro';
-import WindScene from '../components/WindScene';
+import PhotoGrid from '../components/PhotoGrid.astro';
 ---
 
 <Base title="Duy Nguyen — Software Developer">
-  <WindScene client:load />
+  <PhotoGrid />
 </Base>
+
+<style>
+  .home-heading {
+    text-align: center;
+  }
+</style>

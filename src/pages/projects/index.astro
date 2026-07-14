@@ -21,19 +21,11 @@ const projects = allProjects.sort(
       {projects.map((project) => (
         <li class="project-item">
           <a href={`/projects/${project.id.replace(/\.mdx?$/, '')}`} class="project-link">
-            <img src={project.data.image.src} alt="" class="project-image" />
+            {project.data.image && (
+              <img src={project.data.image.src} alt="" class="project-image" />
+            )}
             <div class="project-text">
               <span class="project-title">{project.data.title}</span>
-              <time
-                datetime={project.data.date.toISOString().split('T')[0]}
-                class="project-date"
-              >
-                {project.data.date.toLocaleDateString('en-US', {
-                  year: 'numeric',
-                  month: 'long',
-                  day: 'numeric',
-                })}
-              </time>
               <p class="project-description">{project.data.description}</p>
             </div>
           </a>

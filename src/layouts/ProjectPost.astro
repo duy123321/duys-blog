@@ -5,7 +5,7 @@ interface Props {
   title: string;
   date: Date;
   description: string;
-  image: ImageMetadata;
+  image?: ImageMetadata;
 }
 
 const { title, date, description, image } = Astro.props;
@@ -20,7 +20,7 @@ const formattedDate = date.toLocaleDateString('en-US', {
 <Base title={title} description={description}>
   <article class="post">
     <header class="post-header">
-      <img src={image.src} alt="" class="post-image" />
+      {image && <img src={image.src} alt="" class="post-image" />}
       <h1>{title}</h1>
       <time datetime={date.toISOString().split('T')[0]} class="post-date">
         {formattedDate}

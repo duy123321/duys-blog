@@ -1,0 +1,126 @@
+---
+import { getCollection } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+
+const allProjects = await getCollection('projects', ({ data }) => !data.draft);
+const projects = allProjects.sort(
+  (a, b) => b.data.date.getTime() - a.data.date.getTime()
+);
+---
+
+<Base
+  title="Projects and Work — Duy Nguyen"
+  description="A look at projects and work Duy Nguyen has built."
+>
+  <div class="projects-index">
+    <h1>Projects and Work</h1>
+
+    {projects.length === 0 && <p>No projects yet. Check back soon.</p>}
+
+    <ul class="project-list">
+      {projects.map((project) => (
+        <li class="project-item">
+          <a href={`/projects/${project.id.replace(/\.mdx?$/, '')}`} class="project-link">
+            <img src={project.data.image.src} alt="" class="project-image" />
+            <div class="project-text">
+              <span class="project-title">{project.data.title}</span>
+              <time
+                datetime={project.data.date.toISOString().split('T')[0]}
+                class="project-date"
+              >
+                {project.data.date.toLocaleDateString('en-US', {
+                  year: 'numeric',
+                  month: 'long',
+                  day: 'numeric',
+                })}
+              </time>
+              <p class="project-description">{project.data.description}</p>
+            </div>
+          </a>
+        </li>
+      ))}
+    </ul>
+  </div>
+</Base>
+
+<style>
+  .projects-index h1 {
+    margin-top: 0;
+    margin-bottom: 24px;
+  }
+
+  .project-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .project-item {
+    border-bottom: 1px solid var(--border);
+  }
+
+  .project-item:first-child {
+    border-top: 1px solid var(--border);
+  }
+
+  .project-link {
+    display: flex;
+    gap: 24px;
+    align-items: center;
+    padding-block: 20px;
+    color: inherit;
+    text-decoration: none;
+    transition: padding-left 0.2s;
+  }
+
+  .project-link:hover {
+    padding-left: 8px;
+    text-decoration: none;
+  }
+
+  .project-image {
+    flex: 0 0 200px;
+    width: 200px;
+    height: 130px;
+    object-fit: cover;
+    border-radius: 8px;
+  }
+
+  .project-text {
+    min-width: 0;
+  }
+
+  .project-title {
+    display: block;
+    font-size: 18px;
+    font-weight: 500;
+    color: var(--text-h);
+    margin-bottom: 4px;
+  }
+
+  .project-date {
+    display: block;
+    font-size: 13px;
+    color: var(--text);
+    margin-bottom: 8px;
+  }
+
+  .project-description {
+    font-size: 15px;
+    color: var(--text);
+    margin: 0;
+  }
+
+  @media (max-width: 640px) {
+    .project-link {
+      flex-direction: column;
+      align-items: stretch;
+      gap: 12px;
+    }
+
+    .project-image {
+      width: 100%;
+      height: 180px;
+    }
+  }
+</style>

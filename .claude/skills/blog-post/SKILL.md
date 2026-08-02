@@ -10,7 +10,18 @@ description: >
 
 ## Creating a new post
 
-Posts live in `src/content/blog/` as `.md` files. The filename becomes the URL slug — e.g. `my-post.md` → `/blog/my-post`.
+Each post gets **its own folder** in `src/content/blog/`, containing an `index.md` plus any images that post uses. The folder name becomes the URL slug — e.g. `src/content/blog/my-post/index.md` → `/blog/my-post`.
+
+```
+src/content/blog/
+└── my-post/
+    ├── index.md
+    └── my-photo.jpg
+```
+
+Always name the markdown file `index.md`. Naming it `my-post.md` inside the folder would produce the URL `/blog/my-post/my-post`.
+
+Projects work identically under `src/content/projects/`.
 
 ### Frontmatter
 
@@ -54,13 +65,16 @@ Your content here.
 
 ### Step 1 — Co-locate the image
 
-Place the image file **next to the `.md` file** in `src/content/blog/`:
+Place the image file **inside that post's own folder**, next to its `index.md`:
 
 ```
 src/content/blog/
-├── my-post.md
-└── my-photo.jpg
+└── my-post/
+    ├── index.md
+    └── my-photo.jpg
 ```
+
+Images belong to exactly one post — never drop them loose in `src/content/blog/`.
 
 ### Step 2 — Reference it in Markdown
 

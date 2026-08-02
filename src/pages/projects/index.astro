@@ -20,7 +20,7 @@ const projects = allProjects.sort(
     <ul class="project-list">
       {projects.map((project) => (
         <li class="project-item">
-          <a href={`/projects/${project.id.replace(/\.mdx?$/, '')}`} class="project-link">
+          <a href={`/projects/${project.id}`} class="project-link">
             {project.data.image && (
               <img src={project.data.image.src} alt="" class="project-image" />
             )}

@@ -5,7 +5,7 @@ import ProjectPost from '../../layouts/ProjectPost.astro';
 export async function getStaticPaths() {
   const projects = await getCollection('projects', ({ data }) => !data.draft);
   return projects.map((project) => ({
-    params: { slug: project.id.replace(/\.mdx?$/, '') },
+    params: { slug: project.id },
     props: { project },
   }));
 }

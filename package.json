@@ -5,6 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "astro dev",
+    "prebuild": "rm -rf node_modules/.astro node_modules/.vite",
     "build": "astro build",
     "preview": "astro preview",
     "astro": "astro"
